@@ -1,0 +1,13 @@
+{% comment %}{% extends "base.html" %}{% endcomment %}
+
+{% block content %}
+{#<form action="{% url "profile_image_upload" %}" method="post" enctype="multipart/form-data">#}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+<input type="submit" value="Submit Image" />
+</form>
+
+{#    <input type="submit" name="action" value="Submit" />#}
+
+{% endblock %}
