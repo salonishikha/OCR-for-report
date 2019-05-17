@@ -6,7 +6,8 @@ from files.models import ProfileImage
 
 
 class ProfileImageView(FormView):
-    template_name = 'profile_image_form.html'
+    # template_name = 'profile_image_form.html'
+    template_name = 'front.html'
     form_class = ProfileImageForm
 
     def form_valid(self, form):
