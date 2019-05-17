@@ -1,12 +1,21 @@
 {% comment %}{% extends "base.html" %}{% endcomment %}
 
+{% load static %}
+
 {% block content %}
-{#<form action="{% url "profile_image_upload" %}" method="post" enctype="multipart/form-data">#}
+{#                <div class="row align-items-center">#}
+                    <div style="width:800px; margin:0 auto;" class="row align-items-center">
+
+
+    {#<form action="{% url "profile_image_upload" %}" method="post" enctype="multipart/form-data">#}
+
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-<input type="submit" value="Submit Image" />
+<input type="submit" class="btn btn-info" value="SUBMIT" />
 </form>
+
+           </div>
 
 {#    <input type="submit" name="action" value="Submit" />#}
 
