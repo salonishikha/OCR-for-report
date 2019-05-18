@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -179,7 +180,7 @@
                         <p>Congratulations!  </p>
                         <p>Your answer have been submitted.</p>
                         <div class="d-flex justify-content-center mt-3 login_container">
-                            <input type="submit" class="btn btn-primary" value="TEST AGAIN"/>
+                            <a href="{% url "profile_image_upload1" %}"><input  class="btn btn-primary" value="TEST AGAIN"/></a>
                         </div>
 
                     </form>
