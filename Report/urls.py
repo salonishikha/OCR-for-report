@@ -3,11 +3,12 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.urls import include
 
-from files.views import ProfileImageView
+from files.views import ProfileImageView, ResultsView
 
 urlpatterns = [
 
     url(r'^$', ProfileImageView.as_view(), name='profile_image_upload'),
+    url(r'^results/$', ResultsView, name='results'),
 # url(r'^admin/', include(admin.site.urls)),
 # ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 
