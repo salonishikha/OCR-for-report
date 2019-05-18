@@ -8,6 +8,7 @@ from django.views.generic.edit import FormView
 from django.http.response import HttpResponse, HttpResponseRedirect
 from numpy.distutils.fcompiler import none
 
+from Report import settings
 from files.forms import ProfileImageForm
 from files.models import ProfileImage
 import sys
@@ -40,7 +41,9 @@ class ProfileImageView(FormView):
         return HttpResponseRedirect(reverse('results'))
 
 def ResultsView(request):
-    im = cv2.imread('static/user_report.jpg')
+    url = os.path.join(settings.STATIC_ROOT, 'user_report.jpg')
+    #im = cv2.imread('static/user_report.jpg')
+    im = cv2.imread(url)
     #im = open("static/user_report.jpg", "rb").read()
     # PreProcessing: i. Crop to appropriate size, ii. Thresholding iii.find contours
     print(im)
@@ -78,7 +81,8 @@ def ResultsView(request):
     for i in range(1, 20, 2):
         sorted_required.append(sorted(sortedx_numpy[i], key=lambda x: x[1]))
     sorted_final = np.array(sorted_required).reshape(100, 4)  # convert list to numpy array
-    model = load_model('/static/my_model.h5')
+    modelurl = os.path.join(settings.STATIC_ROOT, 'my_model.h5')
+    model = load_model(modelurl)
     string_list = []
     im23 = imc.copy()
     for a in sorted_final:
@@ -98,7 +102,8 @@ def ResultsView(request):
 
     # print(string_list)
     # read from excel file and generate float list
-    df = pd.read_excel("/static/record.xlsx")
+    excelurl = os.path.join(settings.STATIC_ROOT, 'record.xlsx')
+    df = pd.read_excel(excelurl)
     for rows in df.iterrows():
         my_list = rows
     new_list = [float(my_list[1][i]) for i in range(1, 100)]
@@ -136,5 +141,6 @@ def ResultsView(request):
     im = cv2.rectangle(imtest, (0, 20), (80, 100), (0, 0, 255), 2)
     im = cv2.putText(imtest, "Wrong answer", (100, 80), cv2.FONT_HERSHEY_SIMPLEX, 2.0, (0, 0, 0), lineType=cv2.LINE_AA,
                      thickness=7)
-    cv2.imwrite('static/wrong.png', imtest)  # write the image containing highlighted wrong answers
+    writeurl = os.path.join(settings.STATIC_ROOT, 'wrong.png')
+    cv2.imwrite(writeurl, imtest)  # write the image containing highlighted wrong answers
     return render(request, "Results.html")
