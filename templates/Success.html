@@ -1,4 +1,5 @@
 {% load staticfiles %}
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -174,11 +175,12 @@
                 <div class="container">
                     <form method="post" id="contact" enctype="multipart/form-data">
                         <img alt="" src="{% static "logo.png" %}"/>
-                        <img src={% static "wrong.png" %} height="100%" width="100%">
+
                         <br>
-                        <p>Number of Wrong Answers: </p>
+                        <p>Congratulations!  </p>
+                        <p>Your answer have been submitted.</p>
                         <div class="d-flex justify-content-center mt-3 login_container">
-                            <a href="{% url "profile_image_upload1" %}"><input  class="btn btn-primary" value="TEST NEW"/></a>
+                            <a href="{% url "profile_image_upload1" %}"><input  class="btn btn-primary" value="TEST AGAIN"/></a>
                         </div>
 
                     </form>
